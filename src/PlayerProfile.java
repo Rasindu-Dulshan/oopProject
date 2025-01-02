@@ -3,35 +3,34 @@ import java.util.List;
 import java.util.Scanner;
 public class PlayerProfile {
     private String name;
-    private String username;
+    private final String username;
     private int userId = 0;
     private int gold = 500;
     private int xp;
     private List<String> usernameList = new ArrayList<String>();
+    
 
-    public boolean validateUsername(String username){
-        if (usernameList.contains(username)){
-            System.out.println("Username already in use");
-            return false;
-        } else {
-            return true;
+    public PlayerProfile(String username) {
+        usernameList.add("test");
+        usernameList.add("test2");
+        username = validateUsername(username);
+        this.username = username;
+    }
+    
+     public String validateUsername(String username){
+            Scanner sc = new Scanner(System.in);
+
+            while(usernameList.contains(username)){
+                System.out.println("Username already in use");
+                System.out.println("Enter your username: ");
+                username = sc.nextLine();
+            }
+            return username;
         }
-    }
 
-    public void createProfile() {
-        
-        //get username and name
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Enter your name: ");
-        name = sc.nextLine();
+        // for testing
+        public String getUsername() {
+            return username;
+        }
 
-        do {
-            System.out.println("Enter your username: ");
-            username = sc.nextLine();
-        } while (!validateUsername(username));
-        
-        sc.close();
-        usernameList.add(username);
-        userId += 1;
-    }
 }
