@@ -10,9 +10,12 @@ public class PlayerProfile {
     private List<String> usernameList = new ArrayList<String>();
     
 
-    public PlayerProfile(String username) {
+    public PlayerProfile(String name, String username) {
+        this.name = name;
+        //testing
         usernameList.add("test");
         usernameList.add("test2");
+
         username = validateUsername(username);
         this.username = username;
     }
@@ -21,7 +24,7 @@ public class PlayerProfile {
             Scanner sc = new Scanner(System.in);
 
             while(usernameList.contains(username)){
-                System.out.println("Username already in use");
+                System.out.println("\nUsername already in use");
                 System.out.println("Enter your username: ");
                 username = sc.nextLine();
             }
@@ -31,6 +34,14 @@ public class PlayerProfile {
         // for testing
         public String getUsername() {
             return username;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
         }
 
 }
