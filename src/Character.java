@@ -16,6 +16,11 @@ public class Character {
         this.speed = speed;
     }
 
+    // Getters
+    public String getName() {
+        return name;
+    }
+
     // Display Character Details
     public void display() {
         System.out.println("Name: " + name);
@@ -26,5 +31,6 @@ public class Character {
         System.out.println("Speed: " + speed);
         System.out.println("-------------------------");
     }
+
 }
 
