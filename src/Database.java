@@ -112,7 +112,7 @@ public class Database {
         Character conjurer = new Character("Conjurer", 195, 18, 15, 14, 12);
         Character saint = new Character("Saint", 200, 16, 14, 17, 9);
         Character phoenix = new Character("Phoenix", 275, 17, 13, 17, 19);
-        Character saggitarius = new Character("Sagittarius", 230, 18, 7, 12, 17);
+        Character saggitarius = new Character("Saggitarius", 230, 18, 7, 12, 17);
         Character swiftblade = new Character("Swiftblade", 250, 18, 20, 17, 13);
         Character eldritch = new Character("Eldritch", 270, 19, 17, 18, 14);
         Character lightbringer = new Character("Lightbringer", 260, 17, 15, 19, 12);

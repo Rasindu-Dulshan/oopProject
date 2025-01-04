@@ -21,6 +21,10 @@ public class Character {
         return name;
     }
 
+    public int getPrice() {
+        return price;
+    }
+
     // Display Character Details
     public void display() {
         System.out.println("Name: " + name);

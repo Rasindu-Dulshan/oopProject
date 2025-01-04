@@ -10,7 +10,6 @@ public class PlayerProfile {
     private List<String> usernameList = new ArrayList<String>();
     private Army army = new Army();
     
-
     public PlayerProfile(String name, String username) {
         this.name = name;
         //testing
@@ -21,7 +20,7 @@ public class PlayerProfile {
         this.username = username;
     }
     
-     public String validateUsername(String username){
+    public String validateUsername(String username) {
         Scanner sc = new Scanner(System.in);
 
         while (usernameList.contains(username)) {
@@ -32,10 +31,21 @@ public class PlayerProfile {
         userId += 1;
         return username;
     }
+    
+    //setters
+
+    public void setGold(int gold) {
+        this.gold = gold;
+    }
         
     public Army getArmy() {
         return army;
     }
+
+    public int getGold() {
+        return gold;
+    }
+
     // for testing
     public String getUsername() {
         return username;

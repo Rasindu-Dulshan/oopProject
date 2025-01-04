@@ -21,30 +21,46 @@ public class App {
             name = sc.nextLine();
             player.setName(name);
         }
+
         
         // get warriors from user and create army
-        for (String warriorType : db.warriorTypes) {
-            System.out.println(String.format("\nbelow are the %s type warriors:\n", warriorType));
-            for (Character character : db.warriors.get(warriorType)) {
-                character.display();
-                System.out.println("-------------------------");
-            }
-            Character characterChosen = null;
-
-            do{
-                System.out.println(String.format("Enter your chosen warriror of %s: ", warriorType));
-                String choice = sc.nextLine();
-                // create character using warrior type and given warrior name
-                characterChosen = db.creatCharacter(choice, warriorType);
-                if (characterChosen == null) {
-                    System.out.println("\nInvalid warrior name. Please try again.");
+        int goldCoins = player.getGold();
+        do {
+            goldCoins = player.getGold();
+            for (String warriorType : db.warriorTypes) {
+                System.out.println(String.format("\nbelow are the %s type warriors:\n", warriorType));
+                for (Character character : db.warriors.get(warriorType)) {
+                    character.display();
+                    System.out.println("-------------------------");
                 }
+
+                //preventing invalid warrior name
+                Character characterChosen = null;
+                do{
+                    System.out.println(String.format("Enter your chosen warriror of %s: ", warriorType));
+                    String choice = sc.nextLine();
+                    // create character using warrior type and given warrior name
+                    characterChosen = db.creatCharacter(choice, warriorType);
+                    if (characterChosen == null) {
+                        System.out.println("\nInvalid warrior name. Please try again.");
+                    }
+                   
+                } while (characterChosen == null);
+                       
+                //reduce gold form player
+                goldCoins -= characterChosen.getPrice();
+                if (goldCoins < 0) {
+                    System.out.println("\nYou don't have enough gold. Let's begin purchase again.");
+                    player.setGold(player.getGold());
+                    break;
+                }
+                // add character to warrior list
+                player.getArmy().createWarrirorList(characterChosen);
+                player.setGold(goldCoins);
+                System.out.println("\nYour gold: " + player.getGold()); 
                
-            } while (characterChosen == null);           
-            // add character to warrior list
-            player.getArmy().createWarrirorList(characterChosen);
-           
-        }
+            }
+        } while(goldCoins < 0);
 
         //display army
         System.out.println("\nYour army:\n");
