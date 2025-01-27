@@ -4,93 +4,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
 
-public class Database {
-    
-    List<String> warriorTypes;
-    Map<String,List<Character>> warriors;
-    // //! Create a list of characters
-    // List<Character> characters = new ArrayList<Character>();
+public abstract class Database {
 
-    // //! Create a list of archers, knights, mages, and healers
-    // List<Character> archers = new ArrayList<Character>();
-    // List<Character> knights = new ArrayList<Character>();
-    // List<Character> mages = new ArrayList<Character>();
-    // List<Character> heales = new ArrayList<Character>();
-    // List<Character> mythicalCreatures = new ArrayList<Character>();
+    public static Map<String, List<Character>> warriors;
+    public static Map<String, List<Equipment>> equipment;
+    public static List<String> warriorTypes;
 
-    // //! Create a list of armour and artefacts
-    // List<Equipment> armour = new ArrayList<Equipment>();
-    // List<Equipment> artefacts = new ArrayList<Equipment>();
-
-    public Database() {
-        // //! Add characters to the list
-        // characters.add(shooter);
-        // characters.add(squire);
-        // characters.add(warlock);
-        // characters.add(soother);
-        // characters.add(dragon);
-        // characters.add(ranger); 
-        // characters.add(cavalier);
-        // characters.add(illusionist);
-        // characters.add(medic);
-        // characters.add(basilisk);
-        // characters.add(sunfire);
-        // characters.add(templar);
-        // characters.add(enchanter);
-        // characters.add(alchemist);
-        // characters.add(hydra);
-        // characters.add(zing);
-        // characters.add(zoro);
-        // characters.add(conjurer);
-        // characters.add(saint);
-        // characters.add(phoenix);
-        // characters.add(saggitarius);
-        // characters.add(swiftblade);
-        // characters.add(eldritch);
-        // characters.add(lightbringer);
-        // characters.add(pegasus);
-
-        // //! Add characters to their respective lists
-        // archers.add(shooter);
-        // archers.add(ranger);
-        // archers.add(sunfire);
-        // archers.add(zing);
-        // archers.add(saggitarius);
-
-        // knights.add(squire);
-        // knights.add(cavalier);
-        // knights.add(templar);
-        // knights.add(zoro);
-        // knights.add(swiftblade);
-
-        // mages.add(warlock);
-        // mages.add(illusionist);
-        // mages.add(enchanter);    
-        // mages.add(conjurer);
-        // mages.add(eldritch);
-
-        // heales.add(soother);
-        // heales.add(medic);
-        // heales.add(alchemist);
-        // heales.add(saint);
-        // heales.add(lightbringer);
-
-        // mythicalCreatures.add(dragon);
-        // mythicalCreatures.add(basilisk);
-        // mythicalCreatures.add(hydra);
-        // mythicalCreatures.add(phoenix);
-        // mythicalCreatures.add(pegasus);
-
-        // // Add armour to the list
-        // armour.add(chainmail);
-        // armour.add(regalia);
-        // armour.add(fleece);
-
-        // // Add artefacts to the list
-        // artefacts.add(excalibur);
-        // artefacts.add(amulet);
-        // artefacts.add(crystal);
-
+    static {
+        createDatabase();
+    }
+    public static void createDatabase() {
         //create character objects
         Character shooter = new Character("Shooter", 80, 11, 4, 6, 9);
         Character squire = new Character("Squire", 85, 8, 9, 7, 8);
@@ -126,8 +49,6 @@ public class Database {
         Equipment amulet = new Equipment("Amulet", 200, 1, -1, 1, 1);
         Equipment crystal = new Equipment("Crystal", 210, 2, 1, -1, -1);
 
-        
-
         warriorTypes = Arrays.asList("Archers", "Knights", "Mages", "Healers", "Mythical Creatures");
         warriors = new HashMap<>();
         warriors.put("Archers", Arrays.asList(shooter, ranger, sunfire, zing, saggitarius));
@@ -136,16 +57,11 @@ public class Database {
         warriors.put("Healers", Arrays.asList(soother, medic, alchemist, saint, lightbringer));
         warriors.put("Mythical Creatures", Arrays.asList(dragon, basilisk, hydra, phoenix, pegasus));
 
+        // Create HashMap for equipment
+        Map<String, List<Equipment>> equipmentTypes = new HashMap<>();
+        equipmentTypes.put("Armor", Arrays.asList(chainmail, regalia, fleece));
+        equipmentTypes.put("Artefacts", Arrays.asList(excalibur,amulet, crystal));
+
     }
     
-    public Character creatCharacter(String name, String characterType) {
-       
-        for (Character character : warriors.get(characterType)) {
-            if (character.getName().equals(name)) {
-                return character;
-            }
-        }
-        return null;
-    }
-
 }

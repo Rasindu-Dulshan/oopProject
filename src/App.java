@@ -1,9 +1,7 @@
 import java.util.Scanner;
 public class App {
     public static void main(String[] args) throws Exception {
-        Database db = new Database();
-        
-         //get username and name
+        //get username and name
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter your name: ");
         String name = sc.nextLine();
@@ -21,15 +19,14 @@ public class App {
             name = sc.nextLine();
             player.setName(name);
         }
-
-        
+ 
         // get warriors from user and create army
         int goldCoins = player.getGold();
         do {
             goldCoins = player.getGold();
-            for (String warriorType : db.warriorTypes) {
+            for (String warriorType : Database.warriorTypes) {
                 System.out.println(String.format("\nbelow are the %s type warriors:\n", warriorType));
-                for (Character character : db.warriors.get(warriorType)) {
+                for (Character character : Database.warriors.get(warriorType)) {
                     character.display();
                     System.out.println("-------------------------");
                 }
@@ -40,7 +37,7 @@ public class App {
                     System.out.println(String.format("Enter your chosen warriror of %s: ", warriorType));
                     String choice = sc.nextLine();
                     // create character using warrior type and given warrior name
-                    characterChosen = db.creatCharacter(choice, warriorType);
+                    characterChosen = Character.createCharacter(choice, warriorType);
                     if (characterChosen == null) {
                         System.out.println("\nInvalid warrior name. Please try again.");
                     }
@@ -51,21 +48,26 @@ public class App {
                 goldCoins -= characterChosen.getPrice();
                 if (goldCoins < 0) {
                     System.out.println("\nYou don't have enough gold. Let's begin purchase again.");
-                    player.setGold(player.getGold());
+                    player.getArmy().chosenWarriors.clear();
                     break;
                 }
                 // add character to warrior list
                 player.getArmy().createWarrirorList(characterChosen);
-                player.setGold(goldCoins);
-                System.out.println("\nYour gold: " + player.getGold()); 
+                System.out.println("\nYour gold: " + goldCoins + " gc"); 
                
             }
-        } while(goldCoins < 0);
+        } while (goldCoins < 0);
+        player.setGold(goldCoins);
 
         //display army
         System.out.println("\nYour army:\n");
         for (Character character : player.getArmy().chosenWarriors) {
             character.display();
         }
+
+        System.out.println("would you like to change ");
+
+        System.out.println("would you like to buy any equipment? y/n");
+        answer = sc.nextLine();
     }
 }

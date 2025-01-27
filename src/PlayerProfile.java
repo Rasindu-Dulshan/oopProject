@@ -12,10 +12,6 @@ public class PlayerProfile {
     
     public PlayerProfile(String name, String username) {
         this.name = name;
-        //testing
-        usernameList.add("test");
-        usernameList.add("test2");
-
         username = validateUsername(username);
         this.username = username;
     }
@@ -31,9 +27,12 @@ public class PlayerProfile {
         userId += 1;
         return username;
     }
-    
-    //setters
 
+   
+    //setters
+    public void setName(String name) {
+        this.name = name;
+    }
     public void setGold(int gold) {
         this.gold = gold;
     }
@@ -54,11 +53,4 @@ public class PlayerProfile {
     public String getName() {
         return name;
     }
-
-    
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
 }

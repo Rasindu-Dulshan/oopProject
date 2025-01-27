@@ -25,6 +25,16 @@ public class Character {
         return price;
     }
 
+     public static Character createCharacter(String name, String characterType) {
+       
+        for (Character character : Database.warriors.get(characterType)) {
+            if (character.getName().equals(name)) {
+                return character;
+            }
+        }
+        return null;
+    }
+
     // Display Character Details
     public void display() {
         System.out.println("Name: " + name);
